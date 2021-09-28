@@ -11,4 +11,9 @@ app.get("/products", (req, res) => {
   res.status(200).send(product);
 });
 
+app.get("/users", (req, res) => {
+  const product = { name: "Mahmud", id: 1 };
+  res.status(200).send(product);
+});
+
 app.listen(PORT, () => console.log(`App is running on ${PORT}`));
