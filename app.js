@@ -26,4 +26,6 @@ app.get("/groups", (req, res) => {
   res.status(200).send(product);
 });
 
+console.log("app is in staging");
+
 app.listen(PORT, () => console.log(`App is running on ${PORT}`));
