@@ -27,5 +27,6 @@ app.get("/groups", (req, res) => {
 });
 
 console.log("app is in staging");
+console.log("app is in staging");
 
 app.listen(PORT, () => console.log(`App is running on ${PORT}`));
