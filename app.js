@@ -1,32 +1,23 @@
-const express = require("express");
+import "./database/connection.js";
+import express from "express";
+import { config as envConfig } from "dotenv";
+import cors from "cors";
+import TaskController from "./controller/TaskController.js";
+
+// Initializing app
+envConfig();
 const app = express();
 const PORT = process.env.PORT || 3120;
 
-app.get("/ping", (req, res) => {
-  res.status(200).send("Ping success");
-});
+// Using middlewares
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.get("/products", (req, res) => {
-  const product = { name: "test product", id: 1 };
-  res.status(200).send(product);
-});
+// registering controllers
+const taskController = new TaskController();
+// Handling routes
+app.post("/task/new", taskController.create.bind(taskController));
 
-app.get("/users", (req, res) => {
-  const product = { name: "Mahmud", id: 1 };
-  res.status(200).send(product);
-});
-
-app.get("/tasks", (req, res) => {
-  const product = { name: "test tasks", id: 1 };
-  res.status(200).send(product);
-});
-
-app.get("/groups", (req, res) => {
-  const product = { name: "test groups", id: 1 };
-  res.status(200).send(product);
-});
-
-console.log("app is in staging");
-console.log("app is in staging");
-
+// App listener
 app.listen(PORT, () => console.log(`App is running on ${PORT}`));
