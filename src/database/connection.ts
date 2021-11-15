@@ -1,4 +1,4 @@
-import mysql from "mysql";
+import * as mysql from "mysql";
 
 // creating connection pool
 const db = mysql.createPool({
@@ -16,7 +16,7 @@ db.getConnection((error, connection) => {
 });
 
 // helper export to run query
-export const dbQuery = async (queryString) => {
+export const dbQuery = async (queryString: string) => {
   return new Promise((resolve, reject) => {
     db.getConnection((error, connection) => {
       if (error) reject(error);
