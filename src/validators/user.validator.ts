@@ -1,11 +1,17 @@
 import joi, { Schema } from "joi";
 
-const addNewUser: Schema = joi.object({
-  name: joi.string().required(),
-  email: joi.string().required(),
+const register: Schema = joi.object({
+  fullName: joi.string().required(),
+  email: joi.string().required().email(),
+  password: joi.string().length(6).required(),
+});
+
+const login: Schema = joi.object({
+  email: joi.string().required().email(),
   password: joi.string().required(),
 });
 
 export const userValidationSchema = {
-  addNewUser,
+  register,
+  login,
 };

@@ -1,4 +1,4 @@
-import express, { Application, Request, Response, NextFunction } from "express";
+import express, { Application } from "express";
 import { userRoutes } from "./routes/user.route";
 const router = express.Router();
 

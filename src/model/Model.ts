@@ -1,5 +1,5 @@
 import { dbQuery, pingDatabase } from "../database/database";
-import { OkPacket } from "mysql";
+import { OkPacket } from "mysql2";
 
 export class Model {
   static async PingDatabase() {
