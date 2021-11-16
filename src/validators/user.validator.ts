@@ -1,11 +1,11 @@
-import joi from "joi";
+import joi, { Schema } from "joi";
 
-const newUser = joi.object({
+const addNewUser: Schema = joi.object({
   name: joi.string().required(),
   email: joi.string().required(),
   password: joi.string().required(),
 });
 
-export const validationSchema = {
-  newUser,
+export const userValidationSchema = {
+  addNewUser,
 };

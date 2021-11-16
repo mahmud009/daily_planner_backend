@@ -1,5 +1,5 @@
 import express from "express";
-import { authController } from "../controller/Auth/Auth.controller";
+import { authController } from "../controller/auth.controller";
 const router = express.Router();
 
 router.post("/new", authController.addNewUser);

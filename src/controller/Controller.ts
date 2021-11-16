@@ -1,12 +1,15 @@
-import { validationSchema } from "../validators/user.validator";
+import { Validators } from "../validators/Validators";
 
-export const Handler =
-  (key: any) => (target: any, properties: any, descriptor: any) => {
+/** A wrapper around the controller, doing validation as per method name and wrapping
+ * the method in a try catch block, so that we don't have to repeat try catch in
+ * every method
+ */
+export const RequestHandler =
+  () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     descriptor.value = async function (...args: any) {
-      const [req, res] = args;
-      const schema = validationSchema as any;
-      const { error } = schema[key].validate(req.body);
+      const [req, res, next] = args;
+      const { error } = Validators[propertyKey].validate(req.body);
       if (error)
         return res.status(400).send({ message: error.details[0].message });
       try {

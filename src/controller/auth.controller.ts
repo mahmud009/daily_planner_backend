@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { Handler } from "../Controller";
-import { userModel } from "../../model/user.model";
+import { RequestHandler } from "./Controller";
+import { userModel } from "../model/user.model";
 
 class AuthController {
-  @Handler("newUser")
+  @RequestHandler()
   async addNewUser(req: Request, res: Response, next: NextFunction) {
     const user = req.body;
     const dbResponse = await userModel.addNew(user);
